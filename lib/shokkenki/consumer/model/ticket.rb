@@ -1,4 +1,4 @@
-require_relative '../../version'
+require_relative '../version'
 require 'json'
 
 module Shokkenki
@@ -13,7 +13,7 @@ module Shokkenki
           @provider = attributes[:provider]
           @consumer = attributes[:consumer]
           @interactions = attributes[:interactions]
-          @version = Shokkenki::Version::STRING
+          @version = Shokkenki::Consumer::Version::STRING
         end
 
         def filename

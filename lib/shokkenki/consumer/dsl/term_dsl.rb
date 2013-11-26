@@ -1,4 +1,4 @@
-require_relative '../../term/json_paths_term'
+require 'shokkenki/term/json_paths_term'
 
 module Shokkenki
   module Consumer

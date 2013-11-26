@@ -1,5 +1,5 @@
 require 'active_support/core_ext/hash/indifferent_access'
-require_relative '../../term/term_factory'
+require 'shokkenki/term/term_factory'
 
 module Shokkenki
   module Consumer

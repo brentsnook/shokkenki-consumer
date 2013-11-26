@@ -1,7 +1,7 @@
 require_relative '../../../spec_helper'
 require 'shokkenki/consumer/model/ticket'
 require 'json'
-require 'shokkenki/version'
+require 'shokkenki/consumer/version'
 
 describe Shokkenki::Consumer::Model::Ticket do
 
@@ -11,7 +11,7 @@ describe Shokkenki::Consumer::Model::Ticket do
   let(:provider) { double 'provider' }
 
   before do
-    stub_const('Shokkenki::Version::STRING', '99.9')
+    stub_const('Shokkenki::Consumer::Version::STRING', '99.9')
   end
 
   subject do
