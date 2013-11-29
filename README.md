@@ -1,4 +1,4 @@
-# Shokkenki Consumer
+# Shokkenki Consumer [![Build Status](https://secure.travis-ci.org/brentsnook/shokkenki-consumer.png?branch=master)](http://travis-ci.org/brentsnook/shokkenki-consumer)
 
 Allows consumers to specify [consumer driven contracts using Shokkenki](https://github.com/brentsnook/shokkenki).
 
