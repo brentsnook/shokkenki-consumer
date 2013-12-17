@@ -142,9 +142,14 @@ describe Shokkenki::Consumer::Session do
          :key => double('patronage', :ticket => ticket)
       })
       allow(File).to receive(:open).and_yield file
+      allow(FileUtils).to receive(:mkpath)
       subject.ticket_location = 'ticket_dir'
 
       subject.print_tickets
+    end
+
+    it 'ensures that the ticket location exists' do
+      expect(FileUtils).to have_received(:mkpath).with('ticket_dir')
     end
 
     it 'writes the contents of each consumer ticket' do
