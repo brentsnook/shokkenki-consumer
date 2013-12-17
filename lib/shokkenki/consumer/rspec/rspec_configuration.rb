@@ -14,7 +14,7 @@ RSpec.configure do |config|
   shokkenki_consumer_examples = { :shokkenki_consumer => lambda{ |x| true } }
 
   config.before(:each, shokkenki_consumer_examples) do |example_group|
-    Shokkenki::Consumer::RSpec::Hooks.before_each example_group.example.metadata[:shokkenki_consumer]
+    Shokkenki::Consumer::RSpec::Hooks.before_each example_group
   end
 
   config.after(:each, shokkenki_consumer_examples) do

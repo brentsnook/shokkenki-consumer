@@ -18,7 +18,7 @@ Shokkenki.consumer.configure do
   define_provider :restaurant
 end
 
-describe HungryMan, :shokkenki_consumer => :hungry_man do
+describe HungryMan, :shokkenki_consumer do
 
   context 'when his ramen is hot' do
 

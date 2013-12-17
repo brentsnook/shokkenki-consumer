@@ -45,13 +45,7 @@ describe 'RSpec configuration' do
 
   context 'before each example runs' do
 
-    let(:consumer_metadata) { {:name => :consumername } }
-    let(:metadata) { {:shokkenki_consumer => consumer_metadata} }
-    let(:example_group) do
-      double('example group',
-        :example => double('example', :metadata => metadata)
-      )
-    end
+    let(:example_group) { double :example_group }
 
     before do
       # simulating what happens with an example group
@@ -69,8 +63,8 @@ describe 'RSpec configuration' do
       expect(@filtered_to_consumer_examples).to be_true
     end
 
-    it 'runs the before each hook with the metadata' do
-      expect(hooks).to have_received(:before_each).with(consumer_metadata)
+    it 'runs the before each hook with the example group' do
+      expect(hooks).to have_received(:before_each).with(example_group)
     end
 
   end

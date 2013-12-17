@@ -1,5 +1,6 @@
 require_relative '../../../spec_helper'
 require 'shokkenki/consumer/rspec/hooks'
+require 'shokkenki/consumer/rspec/consumer_name'
 require 'shokkenki/consumer/model/role'
 require 'shokkenki/consumer/consumer'
 
@@ -15,12 +16,20 @@ describe Shokkenki::Consumer::RSpec::Hooks do
 
   context 'before each example runs' do
 
+    let(:example_group) { double :example_group }
+
+    before do
+      allow(Shokkenki::Consumer::RSpec::ConsumerName).to(
+        receive(:from).with(example_group).and_return(:consumername)
+      )
+    end
+
     context 'regardless of whether consumer exists' do
 
-      before { subject.before_each :consumername }
+      before { subject.before_each example_group }
 
       # this allows an implicit consumer to be referred to in the DSL
-      it 'sets a new consumer using the shokkenki metadata' do
+      it 'sets a new consumer using the name extracted from the example group' do
         expect(session).to have_received(:set_current_consumer).with :consumername
       end
 
@@ -37,7 +46,7 @@ describe Shokkenki::Consumer::RSpec::Hooks do
         allow(session).to receive(:consumer).with(:consumername).and_return nil
         allow(Shokkenki::Consumer::Model::Role).to receive(:new).with(:name => :consumername).and_return(role)
 
-        subject.before_each :consumername
+        subject.before_each example_group
       end
 
       it 'creates the consumer' do
