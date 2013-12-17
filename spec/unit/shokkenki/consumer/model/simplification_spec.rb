@@ -10,16 +10,17 @@ describe Shokkenki::Consumer::Model::Simplification do
     end
   end
 
+  it 'removes modules from classes' do
+    module MyModule;class Thing;end;end
+    expect(simplify(MyModule::Thing)).to eq(:thing)
+  end
+
   it 'removes all non-word characters' do
     expect(simplify(%q{!clee@#$%^&*()-+=~`;:'"\\?/><.,][\{\}]tus})).to eq(:cleetus)
   end
 
   it 'replaces spaces with underscores' do
     expect(simplify(:"billy bob")).to eq(:billy_bob)
-  end
-
-  it 'downcases everything' do
-    expect(simplify(:MerL)).to eq(:merl)
   end
 
   it 'removes leading and trailing white space' do

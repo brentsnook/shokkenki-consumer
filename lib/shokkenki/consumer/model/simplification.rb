@@ -1,3 +1,5 @@
+require 'active_support/core_ext/string/inflections'
+
 module Shokkenki
   module Consumer
     module Model
@@ -5,9 +7,10 @@ module Shokkenki
         def simplify name
           name.to_s.
             strip.
+            demodulize.
             gsub(' ', '_').
             gsub(/\W/, '').
-            downcase.
+            underscore.
             to_sym if name
         end
       end

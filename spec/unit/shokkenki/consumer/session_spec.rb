@@ -19,50 +19,50 @@ describe Shokkenki::Consumer::Session do
   end
 
   describe 'provider' do
-    let(:provider) { double('provider', :name => :providername)}
+    let(:provider) { double('provider', :name => :provider_name)}
 
     before do
       subject.add_provider provider
     end
 
     it 'is retrieved using a simplified name' do
-      expect(subject.provider(:PROVidername)).to be(provider)
+      expect(subject.provider(:providerName)).to be(provider)
     end
   end
 
   describe 'adding a provider' do
-    let(:provider) { double('provider', :name => :providerNAME)}
+    let(:provider) { double('provider', :name => :providerName)}
 
     before do
       subject.add_provider provider
     end
 
     it 'adds the provider to the list of providers with a simplified name' do
-      expect(subject.providers[:providername]).to be(provider)
+      expect(subject.providers[:provider_name]).to be(provider)
     end
   end
 
   describe 'adding a consumer' do
-    let(:consumer) { double('consumer', :name => :consumerNAME)}
+    let(:consumer) { double('consumer', :name => :consumerName)}
 
     before do
       subject.add_consumer consumer
     end
 
     it 'adds the consumer to the list of consumers with a simplified name' do
-      expect(subject.consumers[:consumername]).to be(consumer)
+      expect(subject.consumers[:consumer_name]).to be(consumer)
     end
   end
 
   describe 'consumer' do
-    let(:consumer) { double('consumer', :name => :consumername)}
+    let(:consumer) { double('consumer', :name => :consumer_name)}
 
     before do
       subject.add_consumer consumer
     end
 
     it 'is retrieved using a simplified name' do
-      expect(subject.consumer(:CONSUMername)).to be(consumer)
+      expect(subject.consumer(:consumerName)).to be(consumer)
     end
   end
 

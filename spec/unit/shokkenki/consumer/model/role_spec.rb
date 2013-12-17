@@ -4,10 +4,10 @@ require 'shokkenki/consumer/model/role'
 describe Shokkenki::Consumer::Model::Role do
   context 'when created' do
 
-    subject { Shokkenki::Consumer::Model::Role.new :name => :ROLenaMe}
+    subject { Shokkenki::Consumer::Model::Role.new :name => :RoleName}
 
     it 'simplifies the name it is given' do
-      expect(subject.name).to eq(:rolename)
+      expect(subject.name).to eq(:role_name)
     end
 
     context 'when a label is supplied' do
