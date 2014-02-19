@@ -1,0 +1,11 @@
+- configuration:
+  - specifying_ticket_location.feature
+  - defining_providers.feature
+  - defining_stubbers.feature
+- writing_consumer_examples:
+  - defining_consumer_contexts.feature
+  - orders:
+    - labeling_interactions.feature
+    - specifying_requests.feature
+    - specifying_responses.feature
+    - requiring_fixtures.feature
