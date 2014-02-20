@@ -1,0 +1,1 @@
+Shokkenki consumer specs are configured using a simple DSL.

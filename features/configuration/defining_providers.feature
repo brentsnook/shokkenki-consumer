@@ -15,7 +15,7 @@ Feature: Defining providers
     And a consumer spec exists that refers to provider "my_service"
     And a consumer spec exists that refers to provider "my_other_service"
     When I run `rspec`
-    Then the stderr should not contain anything
+    Then all examples should pass
 
   Scenario: Specifying a stubber for a provider
     Given the following configuration:
@@ -26,4 +26,4 @@ Feature: Defining providers
       """
     And a consumer spec exists that refers to provider "my_service"
     When I run `rspec`
-    Then the stderr should not contain anything
+    Then all examples should pass

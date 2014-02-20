@@ -1,11 +1,19 @@
+- defining_consumer_contexts.feature
+- orders:
+  - labelling_interactions.feature
+  - specifying_requests.feature
+  - specifying_responses.feature
+  - requiring_fixtures.feature
+- terms:
+  - string_term.feature
+  - number_term.feature
+  - regexp_term.feature
+  - hash_term.feature
+  - json_term.feature
+- stubbers:
+  - referring_to_stubber.feature
+  - local_server_stubber.feature
 - configuration:
   - specifying_ticket_location.feature
   - defining_providers.feature
   - defining_stubbers.feature
-- writing_consumer_examples:
-  - defining_consumer_contexts.feature
-  - orders:
-    - labeling_interactions.feature
-    - specifying_requests.feature
-    - specifying_responses.feature
-    - requiring_fixtures.feature
