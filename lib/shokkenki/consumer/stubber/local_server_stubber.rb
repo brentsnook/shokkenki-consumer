@@ -7,7 +7,7 @@ require 'find_a_port'
 module Shokkenki
   module Consumer
     module Stubber
-      class HttpStubber
+      class LocalServerStubber
 
         attr_reader :port, :host, :scheme, :interactions_path, :server
 
@@ -18,6 +18,10 @@ module Shokkenki
           @interactions_path = attributes[:interactions_path] || '/shokkenki/interactions'
           @unmatched_requests_path = '/shokkenki/requests/unmatched'
           @unused_interactions_path = '/shokkenki/interactions/unused'
+        end
+
+        def type
+          :local_server
         end
 
         def stub_interaction interaction

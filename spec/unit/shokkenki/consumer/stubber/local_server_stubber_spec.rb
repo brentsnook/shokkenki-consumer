@@ -1,10 +1,10 @@
 require_relative '../../../spec_helper'
-require 'shokkenki/consumer/stubber/http_stubber'
+require 'shokkenki/consumer/stubber/local_server_stubber'
 require 'shokkenki/consumer/stubber/stub_server_middleware'
 require 'find_a_port'
 require 'webmock/rspec'
 
-describe Shokkenki::Consumer::Stubber::HttpStubber do
+describe Shokkenki::Consumer::Stubber::LocalServerStubber do
 
   let(:interaction) { double('interaction').as_null_object }
   let(:interactions_uri) { 'https://stubby.com:1235/interactions' }
@@ -24,11 +24,15 @@ describe Shokkenki::Consumer::Stubber::HttpStubber do
   let(:attributes) { default_attributes }
 
   subject do
-    Shokkenki::Consumer::Stubber::HttpStubber.new(attributes)
+    Shokkenki::Consumer::Stubber::LocalServerStubber.new(attributes)
   end
 
   before do
     allow(interaction).to receive(:to_hash).and_return({:interaction => 'hash'})
+  end
+
+  it "is of type 'local server'" do
+    expect(subject.type).to eq(:local_server)
   end
 
   context 'when created' do
@@ -275,7 +279,7 @@ describe Shokkenki::Consumer::Stubber::HttpStubber do
     context 'when a port has been supplied' do
 
       subject do
-        Shokkenki::Consumer::Stubber::HttpStubber.new(:host => 'somehost', :port => 1234)
+        Shokkenki::Consumer::Stubber::LocalServerStubber.new(:host => 'somehost', :port => 1234)
       end
 
       before do
@@ -302,7 +306,7 @@ describe Shokkenki::Consumer::Stubber::HttpStubber do
     context 'when no port has been supplied' do
 
       subject do
-        Shokkenki::Consumer::Stubber::HttpStubber.new(:port => nil)
+        Shokkenki::Consumer::Stubber::LocalServerStubber.new(:port => nil)
       end
 
       before do

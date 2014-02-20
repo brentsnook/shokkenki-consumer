@@ -1,5 +1,5 @@
 require_relative 'role'
-require_relative '../stubber/http_stubber'
+require_relative '../stubber/local_server_stubber'
 
 module Shokkenki
   module Consumer
@@ -13,7 +13,7 @@ module Shokkenki
 
         def initialize attributes
           super attributes
-          @stubber = attributes[:stubber] || Shokkenki::Consumer::Stubber::HttpStubber.new({})
+          @stubber = attributes[:stubber] || Shokkenki::Consumer::Stubber::LocalServerStubber.new({})
         end
 
         def assert_all_requests_matched!

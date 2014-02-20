@@ -1,6 +1,6 @@
 require_relative '../../../spec_helper'
 require 'shokkenki/consumer/configuration/session'
-require 'shokkenki/consumer/stubber/http_stubber'
+require 'shokkenki/consumer/stubber/local_server_stubber'
 
 describe Shokkenki::Consumer::Configuration::Session do
 
@@ -19,8 +19,8 @@ describe Shokkenki::Consumer::Configuration::Session do
 
   describe 'stubber classes' do
     context 'by default' do
-      it 'stubs :local_server with the HTTP stubber' do
-        expect(subject.stubber_classes).to include({ :local_server => Shokkenki::Consumer::Stubber::HttpStubber })
+      it 'stubs :local_server with the local server stubber' do
+        expect(subject.stubber_classes).to include({ :local_server => Shokkenki::Consumer::Stubber::LocalServerStubber })
       end
     end
   end

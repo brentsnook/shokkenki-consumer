@@ -1,5 +1,5 @@
 require_relative 'provider_configuration'
-require_relative '../stubber/http_stubber'
+require_relative '../stubber/local_server_stubber'
 
 module Shokkenki
   module Consumer
@@ -17,7 +17,7 @@ module Shokkenki
         end
 
         def stubber_classes
-          @stubber_classes ||= { :local_server => Shokkenki::Consumer::Stubber::HttpStubber }
+          @stubber_classes ||= { :local_server => Shokkenki::Consumer::Stubber::LocalServerStubber }
         end
 
         def register_stubber name, clazz

@@ -1,6 +1,6 @@
 require_relative '../../../spec_helper'
 require 'shokkenki/consumer/model/provider'
-require 'shokkenki/consumer/stubber/http_stubber'
+require 'shokkenki/consumer/stubber/local_server_stubber'
 require 'json'
 
 describe Shokkenki::Consumer::Model::Provider do
@@ -21,14 +21,14 @@ describe Shokkenki::Consumer::Model::Provider do
 
       subject { Shokkenki::Consumer::Model::Provider.new(:stubber => nil) }
 
-      let(:http_stubber) { double('http stubber') }
+      let(:local_server_stubber) { double('local server stubber') }
 
       before do
-        allow(Shokkenki::Consumer::Stubber::HttpStubber).to receive(:new).and_return http_stubber
+        allow(Shokkenki::Consumer::Stubber::LocalServerStubber).to receive(:new).and_return local_server_stubber
       end
 
-      it 'has a new HTTP stubber' do
-        expect(subject.stubber).to eq(http_stubber)
+      it 'has a new local server stubber' do
+        expect(subject.stubber).to eq(local_server_stubber)
       end
 
     end
