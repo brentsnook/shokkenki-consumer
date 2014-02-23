@@ -1,8 +1,8 @@
 Feature: Defining consumer contexts
 
-  Consumer contexts need to be identified to Shokkenki by including :shokkenki_consumer in their metadata. This allows Shokkenki to weave its magic at the appropriate times as the specs are run.
+  Consumer RSpec contexts need to be identified to Shokkenki by including `:shokkenki_consumer` in their metadata. This allows Shokkenki to weave its magic at the appropriate times as the specs are run.
 
-  Defining a context as a :shokkenki_consumer will cause Shokkenki to use the context name as the consumer label. You can also specify a custom consumer label in the metadata.
+  Defining a context as a `:shokkenki_consumer` will cause Shokkenki to use the context name as the consumer label. You can also specify a custom consumer label in the metadata.
 
   Scenario: Context name is used as the consumer name and label
     Given a configuration exists that defines the provider "my_provider"

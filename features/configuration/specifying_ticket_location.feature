@@ -13,7 +13,7 @@ Feature: Specifying ticket location
     When I run a shokkenki consumer spec
     Then a file matching %r<custom/ticket/location/.*json> should exist
 
-  Scenario: Tickets are written to **tickets** when no ticket location is specified
+  Scenario: Tickets are written to tickets directory when no ticket location is specified
    Given the following configuration:
       """ruby
       Shokkenki.consumer.configure do

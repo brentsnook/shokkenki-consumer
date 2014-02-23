@@ -4,7 +4,7 @@ Feature: Given (Requiring Fixtures)
 
   It is up to the provider to implement each fixture required by its consumers. A consumer is only concerned with specifying the name of the required fixture and any relevant parameters. These parameters can be used to communicate any specific state required (for example a user name that might be used in a consumer test).
 
-  Be careful to avoid leaking the provider's internal details using fixtures: keep them as minimal as possible, using tools such as [Machinist](https://github.com/notahat/machinist) or [Factory Girl](https://github.com/thoughtbot/factory_girl) to fill in the gaps on the provider side.
+  Be careful not to leak the provider's internal details too much using fixtures. Keep them as minimal as possible, using tools such as [Machinist](https://github.com/notahat/machinist) or [Factory Girl](https://github.com/thoughtbot/factory_girl) to fill in the gaps on the provider side.
 
   Scenario: Requiring a fixture
     Given a configuration exists that defines the provider "my_provider"
@@ -15,7 +15,7 @@ Feature: Given (Requiring Fixtures)
         context 'being greeted' do
           before do
             order(:my_provider).to do
-              given('the provider is in a good mood').
+              given('the provider is in a happy mood').
               get('/greeting').and_respond(:status => 200)
             end
           end
@@ -26,7 +26,7 @@ Feature: Given (Requiring Fixtures)
       """
     When I run `rspec`
     Then a ticket should exist with:
-      | fixtures[0].name | the provider is in a good mood |
+      | fixtures[0].name | the provider is in a happy mood |
 
   Scenario: Requiring a fixture with parameters
     Given a configuration exists that defines the provider "my_provider"
@@ -37,7 +37,7 @@ Feature: Given (Requiring Fixtures)
         context 'being greeted' do
           before do
             order(:my_provider).to do
-              given('a provider exists', :name => 'Cecil').
+              given('a provider exists', :mood => 'happy').
               get('/greeting').and_respond(:status => 200)
             end
           end
@@ -48,4 +48,4 @@ Feature: Given (Requiring Fixtures)
       """
     When I run `rspec`
     Then a ticket should exist with:
-      | fixtures[0].arguments.name | Cecil |
+      | fixtures[0].arguments.mood | happy |

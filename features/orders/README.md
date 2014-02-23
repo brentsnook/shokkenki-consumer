@@ -7,4 +7,4 @@ An interaction can have the following:
 - A label - so that it can be easily identified
 - A request - used to match actual requests
 - A response - used to specify the response that the consumer expects
-- Required fixtures - fixtures that the interaction requires to be established on the provider
+- Required fixtures - detailing fixtures that the interaction requires to be established on the provider

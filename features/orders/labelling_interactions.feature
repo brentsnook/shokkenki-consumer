@@ -12,7 +12,8 @@ Feature: During (Labelling Interactions)
 
         context 'being greeted' do
           before do
-            order(:my_provider).during('a greeting').to do
+            order(:my_provider).
+            during('a greeting').to do
               get('/greeting').and_respond(:status => 200)
             end
           end

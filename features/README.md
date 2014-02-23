@@ -1,6 +1,4 @@
-# Shokkenki Consumer [![Build Status](https://secure.travis-ci.org/brentsnook/shokkenki-consumer.png?branch=master)](http://travis-ci.org/brentsnook/shokkenki-consumer) [![Code Climate](https://codeclimate.com/github/brentsnook/shokkenki-consumer.png)](https://codeclimate.com/github/brentsnook/shokkenki-consumer)
-
-Allows consumers to specify [consumer driven contracts using Shokkenki](https://github.com/brentsnook/shokkenki).
+Shokkenki Consumer allows consumers to specify [consumer driven contracts using Shokkenki](https://github.com/brentsnook/shokkenki).
 
 Consumer tests can express a contract as a series of HTTP interactions that can be used to stub out the provider in those tests. Those interactions can then be saved as a Shokkenki ticket and then used by [Shokkenki Provider](https://github.com/brentsnook/shokkenki-provider) tests to ensure that a provider honours that contract.
 
@@ -8,7 +6,7 @@ Consumer tests can express a contract as a series of HTTP interactions that can 
 
     gem install shokkenki-consumer
 
-## Consumer Rspec
+## Consumer RSpec
 
 ```ruby
 require 'shokkenki/consumer/rspec'
@@ -45,6 +43,6 @@ Try the [Shokkenki Google Group](http://groups.google.com/forum/#!forum/shokkenk
 
 Please use [Shokkenki Consumer Issues on Github](http://github.com/brentsnook/shokkenki-consumer/issues). Have your say on the features that you want.
 
-## License
+## Code
 
-See [LICENSE.txt](LICENSE.txt).
+[Shokkenki consumer on Github](https://github.com/brentsnook/shokkenki-consumer).

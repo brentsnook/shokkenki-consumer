@@ -13,7 +13,18 @@
 - stubbers:
   - referring_to_stubber.feature
   - local_server_stubber.feature
+- tickets:
+  - consumer.feature
+  - provider.feature
+  - interactions.feature
+  - shokkenki_version.feature
+  - ticket_name.feature
 - configuration:
   - specifying_ticket_location.feature
   - defining_providers.feature
   - defining_stubbers.feature
+- running:
+  - filtering.feature
+- troubleshooting:
+  - interacting_with_the_stubber.feature
+

@@ -2,7 +2,13 @@ Feature: JSON Term
 
   A JSON term allows a number of [JSONPath](http://goessner.net/articles/JsonPath/) entires to be specified. Each key is a JSONPath expression and each value is a term describing the value that is required at that path.
 
-  Examples are generated for JSONPath terms by generating a JSON message that contains an appropriate value at each path location. At the moment only simple expressions are supported; numeric elements (x[5]), filter elements (x[?(@.attr)]), union elements (x[0,1]), array slice elements (x[:2]) and script elements (x[@.length-1)]) are not supported.
+  Examples are generated for JSONPath terms by generating a JSON message that contains an appropriate value at each path location. At the moment only simple expressions are supported, complex path elements such as the following are not supported:
+
+  - numeric elements (x[5])
+  - filter elements (x[?(@.attr)])
+  - union elements (x[0,1])
+  - array slice elements (x[:2])
+  - script elements (x[@.length-1)])
 
   Scenario: JSON term example is a message containing term examples at each path
     Given a configuration exists that defines the provider "my_provider"

@@ -11,7 +11,6 @@ Feature: Local Server Stubber
       """ruby
       Shokkenki.consumer.configure do
         define_provider(:my_service) # use default stubber
-        })
       end
       """
     And a file named "spec/spec.rb" with:

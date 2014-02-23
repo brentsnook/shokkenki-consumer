@@ -2,7 +2,7 @@ Feature: Regular Expression Term
 
   A regular expression term contains simple pattern value expressed in Ruby regular expression format.
 
-  Regular expression terms have their examples generated using (Ruby String Random)[https://github.com/repeatedly/ruby-string-random].
+  Regular expression terms have their examples generated using [Ruby String Random](http://github.com/repeatedly/ruby-string-random).
 
   Scenario: Number term example matches its pattern
 

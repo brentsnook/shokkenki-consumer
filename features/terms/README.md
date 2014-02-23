@@ -1,5 +1,7 @@
-Shokkenki terms are used to describe parts of a request or response. They are defined by a consumer as criteria for matching a request or specifying what it expects in a response.
+Shokkenki terms are criteria used by a consumer to describe parts of a request or response.
 
-Terms can be used in consumer tests to generate example responses or in provider tests to ensure that a particular reponse adheres to the contract laid out by the consumer.
+**Terms define criteria**. Terms can be used by a prover stub to match incoming requests or by an acutal provider and its tests to ensure that a response is as the consumer expects.
+
+**Terms have examples**. An example can be generated for each term and a stubbed provider uses these examples when generating a response.
 
 Some terms are composable; they can contain other terms and form complex expressions. They are designed to allow a consumer to specify only what it cares about.
