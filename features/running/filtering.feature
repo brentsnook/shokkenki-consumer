@@ -2,7 +2,7 @@ Feature: Filtering Shokkenki Consumer Examples
 
   You can run just the Shokkenki consumer examples in your test suite by using the [RSpec command line tag option](https://relishapp.com/rspec/rspec-core/docs/command-line/tag-option).
 
-  Scenario: Run only SHokkenki Consumer examples
+  Scenario: Run only Shokkenki consumer examples using the --tag option
     Given a configuration exists that defines the provider "my_provider"
     And a file named "spec/spec.rb" with:
       """ruby
