@@ -37,6 +37,10 @@ end
 
 This example will stub the provider, allowing consumer specs to run. A ticket that serialises these interactions will be written to the default ticket location.
 
+## Documentation
+
+Detailed documentation and examples for each feature can be found on the [Shokkenki Consumer Relish Project](http://www.relishapp.com/shokkenki/shokkenki-consumer).
+
 ## Need help?
 
 Try the [Shokkenki Google Group](http://groups.google.com/forum/#!forum/shokkenki) (you must be a member to post).
