@@ -83,7 +83,7 @@ Feature: Ticket Interactions
                 value: {
                   "accept" => {
                     "type": "regexp",
-                    "value": "(?-mix:json)"
+                    "value": "/json/"
                   }
                 }
               }
@@ -134,7 +134,7 @@ Feature: Ticket Interactions
                 value: {
                   "message.greeting" => {
                     "type": "regexp",
-                    "value": "(?-mix:howdy)"
+                    "value": "/howdy/"
                   }
                 }
               }
