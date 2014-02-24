@@ -69,7 +69,7 @@ describe 'A consumer rspec spec' do
                   'value' => {
                     '$.chatter.inane' => {
                       'type' => 'regexp',
-                      'value' => '(?-mix:hello there, its a warm one today )'
+                      'value' => '/hello there, its a warm one today /'
                     }
                   }
                 }
