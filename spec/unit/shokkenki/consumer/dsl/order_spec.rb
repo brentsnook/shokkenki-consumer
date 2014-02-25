@@ -31,6 +31,7 @@ describe Shokkenki::Consumer::DSL::Order do
     end
 
     let(:interaction) { double 'interaction' }
+    let(:caller_context) { double('calling context').as_null_object }
 
     before do
       allow(subject).to receive(:validate!)
@@ -50,6 +51,13 @@ describe Shokkenki::Consumer::DSL::Order do
 
     it 'adds the resulting interaction to the patronage' do
       expect(patronage).to have_received(:add_interaction).with(interaction)
+    end
+
+    # this is useful for referring to RSpec let variables for example
+    # we need access to the caller context to allow lets to be lazily evaluated
+    it 'allows the order to refer to the caller context' do
+      subject.to { caller_context.some_method }
+      expect(caller_context).to have_received(:some_method)
     end
 
   end

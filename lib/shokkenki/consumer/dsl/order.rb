@@ -60,9 +60,17 @@ module Shokkenki
         end
 
         def to &block
+          # allows caller context and order to both be referenced from block
+          # see http://www.dan-manges.com/blog/ruby-dsls-instance-eval-with-delegation (instance_eval + delegation)
+          @caller_context = eval 'self', block.binding
+
           instance_eval &block
           validate!
           @patronage.add_interaction to_interaction
+        end
+
+        def method_missing(method, *args, &block)
+          @caller_context.send method, *args, &block
         end
       end
     end
