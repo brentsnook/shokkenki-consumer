@@ -1,10 +1,10 @@
 Feature: Regular Expression Term
 
-  A regular expression term contains simple pattern value expressed in Ruby regular expression format.
+  A regular expression term contains a simple pattern value expressed in Ruby regular expression format.
 
   Regular expression terms have their examples generated using [Ruby String Random](http://github.com/repeatedly/ruby-string-random).
 
-  Scenario: Number term example matches its pattern
+  Scenario: Regexp term example matches its pattern
 
     Given a configuration exists that defines the provider "my_provider"
     And a file named "spec/spec.rb" with:
