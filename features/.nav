@@ -8,6 +8,8 @@
   - string_term.feature
   - number_term.feature
   - regexp_term.feature
+  - date_term.feature
+  - date_time_term.feature
   - hash_term.feature
   - json_term.feature
 - stubbers:
