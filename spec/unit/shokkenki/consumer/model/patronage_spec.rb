@@ -22,28 +22,35 @@ describe Shokkenki::Consumer::Model::Patronage do
 
   context 'adding an interaction' do
 
-    let(:interaction) { double 'interaction' }
+    let(:interaction) { double 'interaction', :label => 'interaction label' }
+    let(:newer_interaction) { double 'newer interaction', :label => 'interaction label' }
 
     before do
       subject.add_interaction interaction
     end
 
     it 'adds an interaction to the list for this patronage' do
-      expect(subject.interactions).to include(interaction)
+      expect(subject.interactions.values).to include(interaction)
     end
 
     it 'stubs the interaction on the provider' do
       expect(provider).to have_received(:stub_interaction).with(interaction)
     end
+
+    it 'overwrites interactions with the same label' do
+      subject.add_interaction newer_interaction
+      expect(subject.interactions.values).to include(newer_interaction)
+      expect(subject.interactions.values).to_not include(interaction)
+    end
   end
 
   describe 'ticket' do
 
-    let(:interaction) { double('interaction') }
+    let(:interaction) { double('interaction', :label => 'interaction label' ) }
 
     before do
       allow(Shokkenki::Consumer::Model::Ticket).to receive(:new)
-      subject.interactions << interaction
+      subject.add_interaction interaction
 
       subject.ticket
     end

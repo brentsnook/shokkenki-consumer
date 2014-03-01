@@ -4,6 +4,8 @@ Feature: During (Labelling Interactions)
 
   Use a unique and descriptive label for each interaction that describes the request. Use the opportunity to describe the interaction instead of just the path (we can already tell that by looking at the path its self).
 
+  **Interactions with the same label will overwrite each other**. Only one interaction may have a particular label.
+
   Scenario: Labelling an interaction
     Given a configuration exists that defines the provider "my_provider"
     And a file named "spec/spec.rb" with:

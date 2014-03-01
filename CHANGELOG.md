@@ -1,6 +1,12 @@
 ### 1.1.0 /
 
+Enhancements:
+
 * Allow Time, Date and DateTime to be coerced into Shokkenki terms
+
+Bug Fixes:
+
+* Interactions with the same label now overwrite each other - avoids duplicate interactions
 
 ### 1.0.1 / 2014-02-25
 

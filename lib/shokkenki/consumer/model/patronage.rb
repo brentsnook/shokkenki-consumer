@@ -10,11 +10,11 @@ module Shokkenki
         def initialize attributes
           @provider = attributes[:provider]
           @consumer = attributes[:consumer]
-          @interactions = []
+          @interactions = {}
         end
 
         def add_interaction interaction
-          @interactions << interaction
+          @interactions[interaction.label] = interaction
           @provider.stub_interaction interaction
         end
 
@@ -22,7 +22,7 @@ module Shokkenki
           Ticket.new(
             :consumer => @consumer,
             :provider => @provider,
-            :interactions => @interactions
+            :interactions => @interactions.values
           )
         end
       end
