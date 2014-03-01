@@ -1,3 +1,7 @@
+### 1.1.0 /
+
+* Allow Time, Date and DateTime to be coerced into Shokkenki terms
+
 ### 1.0.1 / 2014-02-25
 
 Bug Fixes:
