@@ -114,6 +114,7 @@ describe Shokkenki::Consumer::DSL::Order do
     let(:request_term) { double 'request term' }
 
     let(:order_with_request) { subject.receive request_attributes }
+    let(:request) { double('request', :to_shokkenki_term => request_term) }
 
     before do
       subject.receive request_attributes
@@ -121,7 +122,7 @@ describe Shokkenki::Consumer::DSL::Order do
     end
 
     before do
-      allow(request_attributes).to receive(:to_shokkenki_term).and_return request_term
+      allow(Shokkenki::Consumer::Model::Request).to receive(:new).and_return request
     end
 
     context 'when a valid request has been specified' do
@@ -134,50 +135,6 @@ describe Shokkenki::Consumer::DSL::Order do
       it 'allows order calls to be chained' do
         expect(order_with_request).to be(subject)
       end
-    end
-
-    context 'when the request method is not present' do
-      before do
-        request_attributes.delete(:method)
-      end
-
-      it 'fails' do
-        expect { order_with_request }.to raise_error("No request method has been specified.")
-      end
-
-    end
-
-    context 'when the request method is not a symbol' do
-      before do
-        request_attributes[:method] = /get/
-      end
-
-      it 'fails' do
-        expect { order_with_request }.to raise_error("The request method must be a symbol.")
-      end
-
-    end
-
-    context 'when the request path is not present' do
-      before do
-        request_attributes.delete(:path)
-      end
-
-      it 'fails' do
-        expect { order_with_request }.to raise_error("No request path has been specified.")
-      end
-
-    end
-
-    context 'when the request path is not a string' do
-      before do
-        request_attributes[:path] = /path/
-      end
-
-      it 'fails' do
-        expect { order_with_request }.to raise_error("The request path must be a string.")
-      end
-
     end
   end
 

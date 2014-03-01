@@ -1,6 +1,7 @@
 require 'shokkenki/term/core_ext'
 require_relative '../model/interaction'
 require_relative '../model/fixture'
+require_relative '../model/request'
 require_relative 'http_methods'
 require_relative 'term_dsl'
 
@@ -22,13 +23,7 @@ module Shokkenki
         end
 
         def receive details
-          raise "No request method has been specified." unless details.has_key?(:method)
-          raise "The request method must be a symbol." unless @request_details = details[:method].is_a?(Symbol)
-
-          raise "No request path has been specified." unless details.has_key?(:path)
-          raise "The request path must be a string." unless details[:path].is_a?(String)
-
-          @request_details = details
+          @request_details = Shokkenki::Consumer::Model::Request.new details
           self
         end
 

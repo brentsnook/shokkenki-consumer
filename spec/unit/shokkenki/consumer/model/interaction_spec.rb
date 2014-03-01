@@ -6,7 +6,7 @@ describe Shokkenki::Consumer::Model::Interaction do
 
   context 'when created' do
 
-    let(:request) { double 'request' }
+    let(:request) { double 'request', :label => 'request label' }
     let(:response) { double 'response' }
     let(:current_time) { Time.now }
     let(:fixture) { double 'fixture' }
@@ -19,6 +19,20 @@ describe Shokkenki::Consumer::Model::Interaction do
           :response => response,
           :fixtures => [fixture]
         )
+      end
+    end
+
+    context 'when given no label' do
+      subject do
+        Shokkenki::Consumer::Model::Interaction.new(
+          :request => request,
+          :response => response,
+          :fixtures => [fixture]
+        )
+      end
+
+      it 'generates a label from the request' do
+        expect(subject.label).to eq('request label')
       end
     end
 
@@ -63,17 +77,8 @@ describe Shokkenki::Consumer::Model::Interaction do
       end
     end
 
-    context 'when there is a label' do
-      it 'includes the label' do
-        expect(subject.to_hash[:label]).to eq('interaction label')
-      end
-    end
-
-    context 'when there is no label' do
-      let(:label) { nil }
-      it 'does not include the label' do
-        expect(subject.to_hash).to_not have_key(:label)
-      end
+    it 'includes the label' do
+      expect(subject.to_hash[:label]).to eq('interaction label')
     end
 
     it 'includes the request hash' do
