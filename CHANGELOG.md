@@ -1,9 +1,10 @@
-### 1.1.0 /
+### 1.1.0 / 2014-03-02
 
 Enhancements:
 
 * Allow Time, Date and DateTime to be coerced into Shokkenki terms
 * Only show shokkenki-consumer lines in RSpec backtrace
+* Create an interaction label from request method, path, query and headers if none is given
 
 Bug Fixes:
 
