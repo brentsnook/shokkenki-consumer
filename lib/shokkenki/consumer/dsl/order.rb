@@ -1,4 +1,3 @@
-require 'shokkenki/term/core_ext'
 require_relative '../model/interaction'
 require_relative '../model/fixture'
 require_relative '../model/request'
@@ -48,8 +47,8 @@ module Shokkenki
         def to_interaction
           Shokkenki::Consumer::Model::Interaction.new(
             :label => @interaction_label,
-            :request => @request_details.to_shokkenki_term,
-            :response => @response_details.to_shokkenki_term,
+            :request => @request_details,
+            :response => @response_details,
             :fixtures => @fixtures
           )
         end

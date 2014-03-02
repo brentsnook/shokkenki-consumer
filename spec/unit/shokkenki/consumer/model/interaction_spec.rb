@@ -4,10 +4,13 @@ require 'shokkenki/consumer/model/interaction'
 
 describe Shokkenki::Consumer::Model::Interaction do
 
+  let(:request) { double 'request', :label => 'request label', :to_shokkenki_term => request_term }
+  let(:response) { double 'response', :to_shokkenki_term => response_term }
+
   context 'when created' do
 
-    let(:request) { double 'request', :label => 'request label' }
-    let(:response) { double 'response' }
+    let(:request_term) { double('request term') }
+    let(:response_term) { double('response term') }
     let(:current_time) { Time.now }
     let(:fixture) { double 'fixture' }
 
@@ -40,12 +43,12 @@ describe Shokkenki::Consumer::Model::Interaction do
       expect(subject.label).to eq('interaction label')
     end
 
-    it 'has the given request' do
-      expect(subject.request).to eq(request)
+    it 'has the given request, coerced into a shokkenki term' do
+      expect(subject.request).to eq(request_term)
     end
 
-    it 'has the given response' do
-      expect(subject.response).to eq(response)
+    it 'has the given response, coerced into a shokkenki term' do
+      expect(subject.response).to eq(response_term)
     end
 
     it 'has the current time' do
@@ -58,8 +61,8 @@ describe Shokkenki::Consumer::Model::Interaction do
   end
 
   context 'converted to a hash' do
-    let(:request) { double 'request', :to_hash => {'request' => 'hash'} }
-    let(:response) { double 'response', :to_hash => {'response' => 'hash'} }
+    let(:request_term) { double 'request', :to_hash => {'request' => 'hash'} }
+    let(:response_term) { double 'response', :to_hash => {'response' => 'hash'} }
     let(:fixture) { double 'fixture', :to_hash => {'fixture' => 'hash'} }
     let(:current_time) { Time.parse '2012-04-23T18:25:43Z' }
 

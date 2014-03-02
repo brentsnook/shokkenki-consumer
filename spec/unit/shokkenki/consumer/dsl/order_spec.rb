@@ -114,7 +114,7 @@ describe Shokkenki::Consumer::DSL::Order do
     let(:request_term) { double 'request term' }
 
     let(:order_with_request) { subject.receive request_attributes }
-    let(:request) { double('request', :to_shokkenki_term => request_term) }
+    let(:request) { double('request') }
 
     before do
       subject.receive request_attributes
@@ -129,7 +129,7 @@ describe Shokkenki::Consumer::DSL::Order do
 
       it 'defines the request of the interaction using a term' do
         order_with_request.to_interaction
-        expect(Shokkenki::Consumer::Model::Interaction).to have_received(:new).with(hash_including(:request => request_term))
+        expect(Shokkenki::Consumer::Model::Interaction).to have_received(:new).with(hash_including(:request => request))
       end
 
       it 'allows order calls to be chained' do
@@ -139,20 +139,16 @@ describe Shokkenki::Consumer::DSL::Order do
   end
 
   context 'and respond' do
-
-    let(:response_term) { double 'response term' }
-
     let(:order_with_response) { subject.and_respond response_attributes }
 
     before do
       subject.receive request_attributes
       subject.and_respond response_attributes
-      allow(response_attributes).to receive(:to_shokkenki_term).and_return response_term
     end
 
     it 'defines the response of the interaction using a term' do
       order_with_response.to_interaction
-      expect(Shokkenki::Consumer::Model::Interaction).to have_received(:new).with(hash_including(:response => response_term))
+      expect(Shokkenki::Consumer::Model::Interaction).to have_received(:new).with(hash_including(:response => response_attributes))
     end
 
     it 'allows order calls to be chained' do

@@ -1,3 +1,5 @@
+require 'shokkenki/term/core_ext'
+
 module Shokkenki
   module Consumer
     module Model
@@ -6,9 +8,9 @@ module Shokkenki
         attr_reader :label, :request, :response, :time, :fixtures
 
         def initialize attributes
-          @request = attributes[:request]
-          @label = attributes[:label] || @request.label
-          @response = attributes[:response]
+          @request = attributes[:request].to_shokkenki_term
+          @label = attributes[:label] || attributes[:request].label
+          @response = attributes[:response].to_shokkenki_term
           @fixtures = attributes[:fixtures]
           @time = Time.now
         end
