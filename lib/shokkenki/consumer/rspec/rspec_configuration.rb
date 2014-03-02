@@ -4,6 +4,11 @@ require 'rspec'
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
+
+  if config.respond_to?(:backtrace_inclusion_patterns)
+    config.backtrace_inclusion_patterns << /shokkenki\-consumer/
+  end
+
   config.include(
     Shokkenki::Consumer::RSpec::ExampleGroupBinding,
     :shokkenki_consumer => lambda{ |x| true }

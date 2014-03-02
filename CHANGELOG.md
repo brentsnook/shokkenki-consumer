@@ -3,6 +3,7 @@
 Enhancements:
 
 * Allow Time, Date and DateTime to be coerced into Shokkenki terms
+* Only show shokkenki-consumer lines in RSpec backtrace
 
 Bug Fixes:
 
