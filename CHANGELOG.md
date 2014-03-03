@@ -1,3 +1,9 @@
+### 1.2.0 / 2014-03-03
+
+Enhancements:
+
+* Document the fact that JSON term will also accept a normal JSON message
+
 ### 1.1.0 / 2014-03-02
 
 Enhancements:
