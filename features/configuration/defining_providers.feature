@@ -21,7 +21,7 @@ Feature: Defining providers
     Given the following configuration:
       """ruby
       Shokkenki.consumer.configure do
-        define_provider(:my_service).stub_with :local_server
+        define_provider(:my_service) { stub_with :local_server }
       end
       """
     And a consumer spec exists that refers to provider "my_service"

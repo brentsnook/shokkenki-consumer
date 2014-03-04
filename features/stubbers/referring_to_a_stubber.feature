@@ -8,10 +8,12 @@ Feature: Referring to a Stubber
     Given the following configuration:
       """ruby
       Shokkenki.consumer.configure do
-        define_provider(:my_service).stub_with(:local_server, {
-          :host => 'localhost',
-          :scheme => :http
-        })
+        define_provider(:my_service) do
+          stub_with(:local_server, {
+            :host => 'localhost',
+            :scheme => :http
+          })
+        end
       end
       """
     And a file named "spec/spec.rb" with:

@@ -21,7 +21,7 @@ Feature: Defining stubbers
 
       Shokkenki.consumer.configure do
         register_stubber :my_stubber, MyStubber
-        define_provider(:my_service).stub_with :my_stubber
+        define_provider(:my_service) { stub_with :my_stubber }
       end
       """
     And a consumer spec exists that refers to provider "my_service"
