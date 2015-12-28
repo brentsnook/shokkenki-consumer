@@ -3,8 +3,6 @@ require_relative 'hooks'
 require 'rspec'
 
 RSpec.configure do |config|
-  config.treat_symbols_as_metadata_keys_with_true_values = true
-
   if config.respond_to?(:backtrace_inclusion_patterns)
     config.backtrace_inclusion_patterns << /shokkenki\-consumer/
   end
@@ -18,12 +16,8 @@ RSpec.configure do |config|
 
   shokkenki_consumer_examples = { :shokkenki_consumer => lambda{ |x| true } }
 
-  config.before(:each, shokkenki_consumer_examples) do |example_group|
-    Shokkenki::Consumer::RSpec::Hooks.before_each example_group
-  end
-
-  config.after(:each, shokkenki_consumer_examples) do
-    Shokkenki::Consumer::RSpec::Hooks.after_each
+  config.around(:example, shokkenki_consumer_examples) do |example|
+    Shokkenki::Consumer::RSpec::Hooks.around example
   end
 
   config.after(:suite) { Shokkenki::Consumer::RSpec::Hooks.after_suite }

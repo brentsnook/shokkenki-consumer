@@ -3,8 +3,8 @@ module Shokkenki
     module RSpec
       class ConsumerName
 
-        def self.from example_group
-          metadata = example_group.example.metadata
+        def self.from example
+          metadata = example.metadata
           consumer_metadata = metadata[:shokkenki_consumer]
           consumer_metadata == true ? description_arg_from(metadata): consumer_metadata
         end
@@ -12,11 +12,12 @@ module Shokkenki
         private
 
         def self.description_arg_from metadata
-          while(metadata.has_key?(:example_group)) do
-            metadata = metadata[:example_group]
+          example_group_metadata = metadata[:example_group]
+          while(example_group_metadata.has_key?(:parent_example_group)) do
+            example_group_metadata = example_group_metadata[:parent_example_group]
           end
 
-          metadata[:description_args].first
+          example_group_metadata[:description_args].first
         end
 
       end

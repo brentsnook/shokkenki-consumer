@@ -252,16 +252,16 @@ describe Shokkenki::Consumer::Stubber::LocalServerStubber do
   describe 'response' do
     context 'when status is in the range of 200-299' do
       it 'is successful' do
-        expect(subject.successful?(200)).to be_true
-        expect(subject.successful?(250)).to be_true
-        expect(subject.successful?(299)).to be_true
+        expect(subject.successful?(200)).to eq(true)
+        expect(subject.successful?(250)).to eq(true)
+        expect(subject.successful?(299)).to eq(true)
       end
     end
 
     context 'when status is outside of the range of 200-299' do
       it 'is not successful' do
-        expect(subject.successful?(300)).to be_false
-        expect(subject.successful?(400)).to be_false
+        expect(subject.successful?(300)).to eq(false)
+        expect(subject.successful?(400)).to eq(false)
       end
     end
 

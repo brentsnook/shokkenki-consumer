@@ -20,15 +20,9 @@ describe 'RSpec configuration' do
   before do
     allow(::RSpec).to receive(:configure).and_yield(config)
     allow(Shokkenki).to receive(:consumer).and_return session
-    allow(hooks).to receive(:before_each)
-    allow(hooks).to receive(:after_each)
+    allow(hooks).to receive(:around)
     allow(hooks).to receive(:before_suite)
     allow(hooks).to receive(:after_suite)
-  end
-
-  it 'treats symbols as keys to prepare for RSpec 3' do
-    load_config
-    expect(config).to have_received(:treat_symbols_as_metadata_keys_with_true_values=).with(true)
   end
 
   it 'includes the example group binding to make the DSL available' do
@@ -40,19 +34,19 @@ describe 'RSpec configuration' do
   # this lessens the chance of a collision with something else
   it 'only makes the DSL available to shokkenki consumer examples' do
     load_config
-    expect(@filtered_to_consumer_examples).to be_true
+    expect(@filtered_to_consumer_examples).to eq(true)
   end
 
-  context 'before each example runs' do
+  context 'around each example' do
 
-    let(:example_group) { double :example_group }
+    let(:example) { double :example }
 
     before do
       # simulating what happens with an example group
       # sucks, need a better way to test this
       @filtered_to_consumer_examples = false
-      allow(config).to receive(:before).with(:each, anything) do |scope, filter, &block|
-        block.call example_group
+      allow(config).to receive(:around).with(:example, anything) do |scope, filter, &block|
+        block.call example
         @filtered_to_consumer_examples = filter[:shokkenki_consumer].call ''
       end
     end
@@ -60,33 +54,11 @@ describe 'RSpec configuration' do
     before { load_config }
 
     it 'only runs the hook for shokkenki consumer examples' do
-      expect(@filtered_to_consumer_examples).to be_true
+      expect(@filtered_to_consumer_examples).to eq(true)
     end
 
     it 'runs the before each hook with the example group' do
-      expect(hooks).to have_received(:before_each).with(example_group)
-    end
-
-  end
-
-  context 'after each example runs' do
-
-    before do
-      @filtered_to_consumer_examples = false
-      allow(config).to receive(:after).with(:each, anything) do |scope, filter, &block|
-        block.call
-        @filtered_to_consumer_examples = filter[:shokkenki_consumer].call ''
-      end
-    end
-
-    before { load_config }
-
-    it 'only runs the hook for shokkenki consumer examples' do
-      expect(@filtered_to_consumer_examples).to be_true
-    end
-
-    it 'runs the after each hook' do
-      expect(hooks).to have_received(:after_each)
+      expect(hooks).to have_received(:around).with(example)
     end
 
   end
@@ -136,7 +108,7 @@ describe 'RSpec configuration' do
     end
 
     it "doesn't attempt to add any patterns for exclusion" do
-      expect(patterns).to_not have_received(anything)
+      expect(patterns).to_not have_received(:backtrace_inclusion_patterns)
     end
   end
 end

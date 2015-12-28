@@ -140,7 +140,7 @@ describe Shokkenki::Consumer::Stubber::Server do
         allow(thread).to receive(:join).with(0).and_return(thread)
       end
 
-      it 'is not responsive' do
+      it 'is false' do
         expect(subject).to_not be_responsive
       end
     end
@@ -166,7 +166,7 @@ describe Shokkenki::Consumer::Stubber::Server do
           stub_request(:get, identify_url).to_return(:body => '', :status => 200)
         end
 
-        it 'is ok' do
+        it 'is true ' do
           expect(subject).to be_responsive
         end
       end
@@ -176,7 +176,7 @@ describe Shokkenki::Consumer::Stubber::Server do
           stub_request(:get, identify_url).to_return(:body => '', :status => 302)
         end
 
-        it 'is ok' do
+        it 'is true' do
           expect(subject).to be_responsive
         end
       end
@@ -187,7 +187,7 @@ describe Shokkenki::Consumer::Stubber::Server do
           stub_request(:get, identify_url).to_return(:body => '', :status => 402)
         end
 
-        it 'is not ok :)' do
+        it 'is false' do
           expect(subject).to_not be_responsive
         end
       end
@@ -199,10 +199,10 @@ describe Shokkenki::Consumer::Stubber::Server do
       context 'when the body contains the rack app ID' do
 
         before do
-          stub_request(:get, identify_url).to_return(:body => app.object_id)
+          stub_request(:get, identify_url).to_return(:body => app.object_id.to_s)
         end
 
-        it 'is responsive' do
+        it 'is true' do
           expect(subject).to be_responsive
         end
       end
@@ -212,7 +212,7 @@ describe Shokkenki::Consumer::Stubber::Server do
           stub_request(:get, identify_url).to_return(:body => 'sausages')
         end
 
-        it 'is not responsive' do
+        it 'is false' do
           expect(subject).to_not be_responsive
         end
       end
@@ -224,7 +224,7 @@ describe Shokkenki::Consumer::Stubber::Server do
         stub_request(:get, identify_url).to_raise(SystemCallError)
       end
 
-      it 'is not responsive' do
+      it 'is false' do
         expect(subject).to_not be_responsive
       end
     end

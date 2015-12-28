@@ -14,19 +14,33 @@ describe Shokkenki::Consumer::RSpec::Hooks do
     allow(Shokkenki).to receive(:consumer).and_return session
   end
 
-  context 'before each example runs' do
+  let(:existing_consumer) { nil }
 
-    let(:example_group) { double :example_group }
+  context 'around each example' do
+    let(:example) { double :example, run: nil }
+    let(:role) { double 'role' }
+    let(:existing_consumer) { double 'existing consumer' }
 
     before do
       allow(Shokkenki::Consumer::RSpec::ConsumerName).to(
-        receive(:from).with(example_group).and_return(:consumername)
+        receive(:from).and_return(:consumername)
       )
+
+      allow(session).to receive(:consumer).and_return existing_consumer
+      allow(Shokkenki::Consumer::Model::Role).to receive(:new).and_return(role)
+
+      subject.around example
+    end
+
+    it 'attempts to find the existing consumer' do
+      expect(session).to have_received(:consumer).with(:consumername)
+    end
+
+    it 'extracts the consumer name from the example' do
+      expect(Shokkenki::Consumer::RSpec::ConsumerName).to have_received(:from).with(example)
     end
 
     context 'regardless of whether consumer exists' do
-
-      before { subject.before_each example_group }
 
       # this allows an implicit consumer to be referred to in the DSL
       it 'sets a new consumer using the name extracted from the example group' do
@@ -39,26 +53,20 @@ describe Shokkenki::Consumer::RSpec::Hooks do
     end
 
     context 'when no consumer exists with the given name' do
-      let(:role) { double 'role' }
+      let(:existing_consumer) { nil }
 
-      before do
-        allow(session).to receive(:add_consumer)
-        allow(session).to receive(:consumer).with(:consumername).and_return nil
-        allow(Shokkenki::Consumer::Model::Role).to receive(:new).with(:name => :consumername).and_return(role)
-
-        subject.before_each example_group
+      it 'creates a new role' do
+        expect(Shokkenki::Consumer::Model::Role).to have_received(:new).with(:name => :consumername)
       end
 
-      it 'creates the consumer' do
+      it 'adds the new role as consumer' do
         expect(session).to have_received(:add_consumer).with(role)
       end
-
     end
 
-  end
-
-  context 'after each example runs' do
-    before { subject.after_each }
+    it 'runs the example' do
+      expect(example).to have_received(:run)
+    end
 
     it 'asserts that no provider had unmatched requests' do
       expect(session).to have_received(:assert_all_requests_matched!)
